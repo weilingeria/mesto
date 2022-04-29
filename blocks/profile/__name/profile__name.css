@@ -1,0 +1,8 @@
+.profile__name {
+  font-weight: 500;
+  font-size: 42px;
+  line-height: 48px;
+  color: white;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+}
