@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
   <link rel="stylesheet" href="pages/index.css">
-  <link rel="stylesheet" href="../mesto/font.css">
 </head>
 
 <body class="page">
@@ -19,56 +18,56 @@
         <div class="profile__avatar"></div>
         <div class="profile__info">
           <div class="profile__column">
-            <h1 class="profile__name">Губка Боб</h1>
-            <p class="profile__description">Проживает на дне океана</p>
+            <h1 class="profile__name block">Губка Боб</h1>
+            <p class="profile__description block">Проживает на дне океана</p>
           </div>
-          <button class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-button"></button>
         </div>
       </div>
-      <button class="profile__add-button"></button>
+      <button type="button" class="profile__add-button"></button>
     </section>
 
     <section class="elements">
       <div class="element">
         <img src="../mesto/images/Element_1.jpg" alt="Морская звезда" class="element__image">
         <div class="element__description">
-          <h2 class="element__title">Лучший друг Патрик</h2>
-          <button class="element__like"></button>
+          <h2 class="element__title block">Лучший друг Патрик</h2>
+          <button type="button" class="element__like"></button>
         </div>
       </div>
       <div class="element">
         <img src="../mesto/images/Element_2.jpg" alt="Оранжевый коралл" class="element__image">
         <div class="element__description">
           <h2 class="element__title">Текстура</h2>
-          <button class="element__like"></button>
+          <button type="button" class="element__like"></button>
         </div>
       </div>
       <div class="element">
         <img src="../mesto/images/Element_3.jpg" alt="Медузы" class="element__image">
         <div class="element__description">
           <h2 class="element__title">Ловля медуз</h2>
-          <button class="element__like"></button>
+          <button type="button" class="element__like"></button>
         </div>
       </div>
       <div class="element">
         <img src="../mesto/images/Element_4.jpg" alt="Две оранжевые губки для мытья посуды" class="element__image">
         <div class="element__description">
           <h2 class="element__title">Близняшки</h2>
-          <button class="element__like"></button>
+          <button type="button" class="element__like"></button>
         </div>
       </div>
       <div class="element">
         <img src="../mesto/images/Element_5.jpg" alt="Улитка" class="element__image">
         <div class="element__description">
           <h2 class="element__title">Гэри</h2>
-          <button class="element__like"></button>
+          <button type="button" class="element__like"></button>
         </div>
       </div>
       <div class="element">
         <img src="../mesto/images/Element_6.jpg" alt="Лего Патрик и Спанч Боб" class="element__image">
         <div class="element__description">
           <h2 class="element__title">У костра</h2>
-          <button class="element__like"></button>
+          <button type="button" class="element__like"></button>
         </div>
       </div>
     </section>
@@ -80,9 +79,9 @@
 
   <div class="popup">
     <div class="popup__container">
-      <button class="popup__close"></button>
+      <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
-      <form class="popup__form">
+      <form class="popup__form" name="profile-form">
         <input type="text" class="popup__input popup__input_type_name" name="name" value="Губка Боб">
         <input type="text" class="popup__input popup__input_type_description" name="description" value="Проживает на дне океана">
         <button class="popup__save" type="submit">Сохранить</button>

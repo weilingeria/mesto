@@ -2,7 +2,7 @@
   width: 24px;
   height: 24px;
   margin-left: 18px;
-  padding: 37px 0 0;
+  padding: 50px 0 0;
   border: 0;
   background-image: url(../../../images/Edit\ Button.svg);
   background-repeat: no-repeat;
@@ -13,4 +13,14 @@
 
 .profile__edit-button:hover {
   opacity: 0.6;
+}
+
+@media screen and (max-width: 320px) {
+  .profile__edit-button {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    background-size: 18px;
+    padding-top: 35px;
+  }
 }
