@@ -9,3 +9,10 @@
   display: flex;
   flex-direction: column;
 }
+
+@media screen and (max-width: 475px) {
+  .popup__container {
+    width: 282px;
+    padding: 25px 22px;
+  }
+}
