@@ -28,48 +28,9 @@
     </section>
 
     <section class="elements">
-      <div class="element">
-        <img src="../mesto/images/Element_1.jpg" alt="Морская звезда" class="element__image">
-        <div class="element__description">
-          <h2 class="element__title block">Лучший друг Патрик</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="../mesto/images/Element_2.jpg" alt="Оранжевый коралл" class="element__image">
-        <div class="element__description">
-          <h2 class="element__title">Текстура</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="../mesto/images/Element_3.jpg" alt="Медузы" class="element__image">
-        <div class="element__description">
-          <h2 class="element__title">Ловля медуз</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="../mesto/images/Element_4.jpg" alt="Две оранжевые губки для мытья посуды" class="element__image">
-        <div class="element__description">
-          <h2 class="element__title">Близняшки</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="../mesto/images/Element_5.jpg" alt="Улитка" class="element__image">
-        <div class="element__description">
-          <h2 class="element__title">Гэри</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
-      <div class="element">
-        <img src="../mesto/images/Element_6.jpg" alt="Лего Патрик и Спанч Боб" class="element__image">
-        <div class="element__description">
-          <h2 class="element__title">У костра</h2>
-          <button type="button" class="element__like"></button>
-        </div>
-      </div>
+      <ul class="elements__list">
+
+      </ul>
     </section>
   </main>
 
@@ -83,8 +44,8 @@
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="profile-form">
-        <input type="text" class="popup__input popup__input_type_name" name="name" value="Губка Боб">
-        <input type="text" class="popup__input popup__input_type_description" name="description" value="Проживает на дне океана">
+        <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Как Вас зовут?">
+        <input type="text" class="popup__input popup__input_type_description" name="description" placeholder="Чем Вы занимаетесь?">
         <button class="popup__save" type="submit">Сохранить</button>
       </form>
     </div>
@@ -102,6 +63,20 @@
       </form>
     </div>
   </div>
+
+  <!-- Попап открытия карточки -->
+
+
+  <template id="elements-template">
+    <li class="element">
+      <img class="element__image">
+      <div class="element__description">
+        <h2 class="element__title"></h2>
+        <button class="element__like" type="button"></button>
+      </div>
+      <button class="element__delete" type="button"></button>
+    </li>
+  </template>
 
   <script src="../mesto/scripts/index.js"></script>
 
