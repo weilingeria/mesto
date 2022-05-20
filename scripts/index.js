@@ -131,16 +131,15 @@
     cardLink.alt = cardsData.name;
   
       //Удалить карточку, нажав на корзину
-  
-    const deleteButton = newCard.querySelector('.element__delete');
-    deleteButton.addEventListener('click', cardDelete);
+      const deleteButton = newCard.querySelector('.element__delete');
+      deleteButton.addEventListener('click', cardDelete);
   
       //Поставить лайк
+      const likeButton = newCard.querySelector('.element__like');
+      likeButton.addEventListener('click', cardLike);
   
-    const likeButton = newCard.querySelector('.element__like');
-    likeButton.addEventListener('click', cardLike);
-  
-      
+      //Открыть картинку, кликнув на нее
+      cardLink.addEventListener('click', () => openImage(cardsData));
   
     return newCard;
   };
@@ -153,3 +152,22 @@
   initialCards.forEach((cardsData) => {
     renderCard(cardsData);
   });
+
+//ПОПАП ОТКРЫТИЯ КАРТОЧКИ
+
+  const openImagePopup = document.querySelector('.popup_open-image');
+  const openedImage = document.querySelector('.popup__image');
+  const imageTitle = document.querySelector('.popup__image-title');
+  const closeImagePopupButton = document.querySelector('.popup__close_open-image');
+
+  //Функция: открывает картинку при нажатии на неё
+  function openImage(cardsData) {
+    imageTitle.textContent = cardsData.name;
+    openedImage.src = cardsData.link;
+    openImage.alt = cardsData.name;
+
+    openPopup(openImagePopup)
+  }
+
+  //Закрыть картинку, нажав на крестик
+  closeImagePopupButton.addEventListener('click', () => closePopup(openImagePopup));
