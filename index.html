@@ -18,8 +18,8 @@
         <div class="profile__avatar"></div>
         <div class="profile__info">
           <div class="profile__column">
-            <h1 class="profile__name block">Губка Боб</h1>
-            <p class="profile__description block">Проживает на дне океана</p>
+            <h1 class="profile__name block">海绵宝宝</h1>
+            <p class="profile__description block">居住在海底</p>
           </div>
           <button type="button" class="profile__edit-button"></button>
         </div>
@@ -65,13 +65,19 @@
   </div>
 
   <!-- Попап открытия карточки -->
-
+  <div class="popup popup_open-image">
+    <div class="popup__openimage-container">
+      <button class="popup__close popup__close_open-image" type="button"></button>
+      <img class="popup__image">
+      <p class="popup__image-title"></p>
+    </div>
+  </div>
 
   <template id="elements-template">
     <li class="element">
       <img class="element__image">
       <div class="element__description">
-        <h2 class="element__title"></h2>
+        <h2 class="element__title block"></h2>
         <button class="element__like" type="button"></button>
       </div>
       <button class="element__delete" type="button"></button>
