@@ -3,10 +3,8 @@
   const openEditProfilePopupButton = document.querySelector('.profile__edit-button');
   const profileName = document.querySelector('.profile__name');
   const profileDescription = document.querySelector('.profile__description');
-  const popup = document.querySelector('.popup');
   const editProfilePopup = document.querySelector('.popup_edit-profile');
   const closeEditProfilePopupButton = document.querySelector('.popup__close');
-  const saveInfoButton = document.querySelector('.popup__save');
   const formElement = document.querySelector('.popup__form');
   const nameInput = document.querySelector('.popup__input_type_name');
   const jobInput = document.querySelector('.popup__input_type_description');
@@ -47,7 +45,7 @@
   //Отправить новые данные в форму
   formElement.addEventListener('submit', handleFormSubmit);
 
-  
+
 
 //ПОПАП ОТКРЫТИЯ КАРТОЧКИ
 
