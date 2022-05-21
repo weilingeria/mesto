@@ -44,8 +44,8 @@
       <button type="button" class="popup__close"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form" name="profile-form">
-        <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Как Вас зовут?">
-        <input type="text" class="popup__input popup__input_type_description" name="description" placeholder="Чем Вы занимаетесь?">
+        <input type="text" class="popup__input popup__input_type_name" name="name" placeholder="Как Вас зовут?" required>
+        <input type="text" class="popup__input popup__input_type_description" name="description" placeholder="Чем Вы занимаетесь?" required>
         <button class="popup__save" type="submit">Сохранить</button>
       </form>
     </div>
@@ -57,8 +57,8 @@
       <button type="button" class="popup__close popup__close_add-cards"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__form_add-cards" name="newElementForm">
-        <input type="text" class="popup__input popup__input_type_title" name="elementTitle" placeholder="Название">
-        <input type="text" class="popup__input popup__input_type_link" name="elementLink" placeholder="Ссылка на картинку">
+        <input type="text" class="popup__input popup__input_type_title" name="elementTitle" placeholder="Название" required>
+        <input type="url" class="popup__input popup__input_type_link" name="elementLink" placeholder="Ссылка на картинку" required>
         <button class="popup__save" type="submit">Создать</button>
       </form>
     </div>
@@ -84,7 +84,8 @@
     </li>
   </template>
 
-  <script src="../mesto/scripts/index.js"></script>
+  <script src="./scripts/cards.js"></script>
+  <script src="./scripts/index.js"></script>
 
 </body>
 </html>

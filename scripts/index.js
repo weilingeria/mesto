@@ -12,12 +12,12 @@
   const jobInput = document.querySelector('.popup__input_type_description');
 
   //Функции открытия и закрытия для всех попапов
-  function openPopup(e) {
-      e.classList.add('popup_is-opened')
+  function openPopup(element) {
+      element.classList.add('popup_is-opened')
   }
 
-  function closePopup(e) {
-    e.classList.remove('popup_is-opened')
+  function closePopup(element) {
+    element.classList.remove('popup_is-opened')
   }
 
 
@@ -30,7 +30,7 @@
     }
 
   //Функция: отправляет новые введенные данные в графы имени и описания и закрывает форму
-  function formSubmitHandler(evt) {
+  function handleFormSubmit(evt) {
       evt.preventDefault(); 
       profileName.textContent = nameInput.value;
       profileDescription.textContent = jobInput.value;
@@ -45,7 +45,28 @@
   closeEditProfilePopupButton.addEventListener('click', () => closePopup(editProfilePopup));
 
   //Отправить новые данные в форму
-  formElement.addEventListener('submit', formSubmitHandler);
+  formElement.addEventListener('submit', handleFormSubmit);
+
+  
+
+//ПОПАП ОТКРЫТИЯ КАРТОЧКИ
+
+const openImagePopup = document.querySelector('.popup_open-image');
+const openedImage = document.querySelector('.popup__image');
+const imageTitle = document.querySelector('.popup__image-title');
+const closeImagePopupButton = document.querySelector('.popup__close_open-image');
+
+  //Функция: открывает картинку при нажатии на неё
+  function openImage(cardData) {
+    imageTitle.textContent = cardData.name;
+    openedImage.src = cardData.link;
+    openImage.alt = cardData.name;
+
+    openPopup(openImagePopup)
+  }
+
+  //Закрыть картинку, нажав на крестик
+  closeImagePopupButton.addEventListener('click', () => closePopup(openImagePopup));  
 
 
 
@@ -64,35 +85,8 @@
   //Закрыть попап добавления карточек, нажав на крестик
   addCardFormCloseButton.addEventListener('click', () => closePopup(addCardPopup));
 
-  const initialCards = [
-    {
-      name: '美美的海底🌊',
-      link: 'https://images.unsplash.com/photo-1603798125698-a35feca4ed6d?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387'
-    },
-    {
-      name: '抓水母',
-      link: 'https://images.unsplash.com/photo-1519747180378-d55bc9a23efd?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387'
-    },
-    {
-      name: '⭐派大星⭐ My homie',
-      link: 'https://images.unsplash.com/photo-1588518008356-bbd53d98e410?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170'
-    },
-    {
-      name: '菠萝房',
-      link: 'https://images.unsplash.com/photo-1458791087439-278afc90b1d5?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387'
-    },
-    {
-      name: '美味汉堡',
-      link: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=699'
-    },
-    {
-      name: 'Gary 小蜗🐌',
-      link: 'https://images.unsplash.com/photo-1596708635238-aab8d249a455?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464'
-    }
-  ];
-
   //Шаблон добавления карточки
-  const elementsTemplate = document.querySelector('#elements-template').content.querySelector('.element');
+  const elementTemplate = document.querySelector('#elements-template').content.querySelector('.element');
 
   //DOM элементы
   const elementsListContainer = document.querySelector('.elements__list');
@@ -119,16 +113,16 @@
   };
 
   //Генерация карточки
-  const generateCard = (cardsData) => {
+  const generateCard = (cardData) => {
 
-    const newCard = elementsTemplate.cloneNode(true);
+    const newCard = elementTemplate.cloneNode(true);
   
     const cardTitle = newCard.querySelector('.element__title');
     const cardLink = newCard.querySelector('.element__image');
   
-    cardTitle.textContent = cardsData.name;
-    cardLink.src = cardsData.link;
-    cardLink.alt = cardsData.name;
+    cardTitle.textContent = cardData.name;
+    cardLink.src = cardData.link;
+    cardLink.alt = cardData.name;
   
       //Удалить карточку, нажав на корзину
       const deleteButton = newCard.querySelector('.element__delete');
@@ -139,35 +133,16 @@
       likeButton.addEventListener('click', cardLike);
   
       //Открыть картинку, кликнув на нее
-      cardLink.addEventListener('click', () => openImage(cardsData));
+      cardLink.addEventListener('click', () => openImage(cardData));
   
     return newCard;
   };
 
   //Отрисовка карточек из массива
-  const renderCard = (cardsData) => {
-    elementsListContainer.prepend(generateCard(cardsData));
+  const renderCard = (cardData) => {
+    elementsListContainer.prepend(generateCard(cardData));
   };
   
-  initialCards.forEach((cardsData) => {
-    renderCard(cardsData);
+  initialCards.forEach((cardData) => {
+    renderCard(cardData);
   });
-
-//ПОПАП ОТКРЫТИЯ КАРТОЧКИ
-
-  const openImagePopup = document.querySelector('.popup_open-image');
-  const openedImage = document.querySelector('.popup__image');
-  const imageTitle = document.querySelector('.popup__image-title');
-  const closeImagePopupButton = document.querySelector('.popup__close_open-image');
-
-  //Функция: открывает картинку при нажатии на неё
-  function openImage(cardsData) {
-    imageTitle.textContent = cardsData.name;
-    openedImage.src = cardsData.link;
-    openImage.alt = cardsData.name;
-
-    openPopup(openImagePopup)
-  }
-
-  //Закрыть картинку, нажав на крестик
-  closeImagePopupButton.addEventListener('click', () => closePopup(openImagePopup));
