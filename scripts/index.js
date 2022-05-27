@@ -11,13 +11,14 @@
 
   //Функции открытия и закрытия для всех попапов
   function openPopup(element) {
-      element.classList.add('popup_is-opened')
+      element.classList.add('popup_is-opened');
+      document.addEventListener("keydown", closePopupEsc);
   }
 
   function closePopup(element) {
-    element.classList.remove('popup_is-opened')
+    element.classList.remove('popup_is-opened');
+    document.removeEventListener("keydown", closePopupEsc);
   }
-
 
   //Функция: открывает попап редактирования профиля и заполняет поля
   function openEditProfilePopup() {
@@ -144,3 +145,25 @@ const closeImagePopupButton = document.querySelector('.popup__close_open-image')
   initialCards.forEach((cardData) => {
     renderCard(cardData);
   });
+
+
+  //Функция: закрывает попапы при нажатии на оверлэй
+  function closePopupOverlay(evt) {
+    if (evt.target === evt.currentTarget) {
+      closePopup(editProfilePopup);
+      closePopup(openImagePopup);
+      closePopup(addCardPopup);
+    }
+  }
+
+  editProfilePopup.addEventListener('mousedown', closePopupOverlay);
+  openImagePopup.addEventListener('mousedown', closePopupOverlay);
+  addCardPopup.addEventListener('mousedown', closePopupOverlay);
+
+  //Функция: закрывает попапы при нажатии на Esc
+  function closePopupEsc(evt) {
+    if (evt.key === "Escape") {
+     const openPopupForEsc = document.querySelector(".popup_is-opened");
+     closePopup(openPopupForEsc);
+    }
+  }
