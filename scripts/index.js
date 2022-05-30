@@ -166,4 +166,4 @@ const closeImagePopupButton = document.querySelector('.popup__close_open-image')
      const openPopupForEsc = document.querySelector(".popup_is-opened");
      closePopup(openPopupForEsc);
     }
-  }
+  } 
