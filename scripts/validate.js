@@ -32,20 +32,47 @@ const isValid = (formElement, formInput) => {
   }
 };
 
+//Функция: проверяет, есть ли среди полей хотя бы одно невалидное для дальнейшей настройки статуса кнопки
+const hasInvalidInput = (inputList) => {
+  return inputList.some((formInput) => {
+    //Если хоть одно поле не валидно, колбэк вернет true
+
+    return !formInput.validity.valid;
+  })
+};
+
 //Функция: принимает форму и добавляет всем ее полям обработчики
 const setEventListeners = (formElement) => {
   //Находим все поля внутри формы и делаем из них массив
   const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  //Находим в текущей форме кнопку "Сохранить"
+  const buttonElement = formElement.querySelector('.popup__save');
+
+  toggleButtonState(inputList, buttonElement);
 
   //Обойдем все элементы и каждому добавим обработчик события input, внутри колбэка вызовем isValid
   inputList.forEach((formInput) => {
     formInput.addEventListener('input', () => {
       isValid(formElement, formInput)
+
+      //Вызовем переключатель кнопки
+      toggleButtonState(inputList, buttonElement);
     });
   });
 };
 
-//Функция: находит все формы и делает из них массив, перебирает их и для каждой вызывает setEventListeners
+//Функция: отключает кнопку, если есть хоть один невалидный инпут, включает ее, если всё в порядке
+const toggleButtonState = (inputList, buttonElement) => {
+  if (hasInvalidInput(inputList)) {
+    buttonElement.classList.add('popup__save_disabled');
+    buttonElement.disabled = true;
+  } else {
+    buttonElement.classList.remove('popup__save_disabled');
+    buttonElement.disabled = false;
+  }
+};
+
+//Функция: находит все формы и делает из них массив, перебирает его и для каждой формы вызывает setEventListeners
 const enableValidation = () => {
   const formList = Array.from(document.querySelectorAll('.popup__form'));
 
