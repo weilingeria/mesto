@@ -78,6 +78,7 @@ const openedImagePopupCloseButton = document.querySelector('.popup__close_open-i
   const addCardFormCloseButton = document.querySelector('.popup__close_add-cards');
   const titleInput = document.querySelector('.popup__input_type_title');
   const linkInput = document.querySelector('.popup__input_type_link');
+  const submitButton = document.getElementById('popup__save_add-form');
 
   //Открыть попап для добавления карточек
   addCardButton.addEventListener('click', () => openPopup(addCardPopup));
@@ -97,6 +98,8 @@ const openedImagePopupCloseButton = document.querySelector('.popup__close_open-i
     renderCard({ name: titleInput.value, link: linkInput.value });
 
     addCardForm.reset();
+
+    submitButtonInactive(submitButton);
   
     closePopup(addCardPopup);
   };

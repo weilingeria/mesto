@@ -61,14 +61,22 @@ const setEventListeners = (formProfileElement) => {
   });
 };
 
+function submitButtonInactive(buttonElement) {
+  buttonElement.classList.add('popup__save_disabled');
+  buttonElement.disabled = true;
+};
+
+function submitButtonActive(buttonElement) {
+  buttonElement.classList.remove('popup__save_disabled');
+  buttonElement.disabled = false;
+};
+
 //Функция: отключает кнопку, если есть хоть один невалидный инпут, включает ее, если всё в порядке
 const toggleButtonState = (inputList, buttonElement) => {
   if (hasInvalidInput(inputList)) {
-    buttonElement.classList.add('popup__save_disabled');
-    buttonElement.disabled = true;
+    submitButtonInactive(buttonElement);
   } else {
-    buttonElement.classList.remove('popup__save_disabled');
-    buttonElement.disabled = false;
+    submitButtonActive(buttonElement);
   }
 };
 
