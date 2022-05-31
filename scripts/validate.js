@@ -1,10 +1,10 @@
 //Форму мы уже находили, найдем в ней инпут
-const formInput = formElement.querySelector('.popup__input');
+const formInput = formProfileElement.querySelector('.popup__input');
 
 //Функция: показывает ошибку
-const showInputError = (formElement, formInput, errorMessage) => {
+const showInputError = (formProfileElement, formInput, errorMessage) => {
   // Найдем элемент ошибки
-  const formError = formElement.querySelector(`.${formInput.id}-error`);
+  const formError = formProfileElement.querySelector(`.${formInput.id}-error`);
 
   formInput.classList.add('popup__input_type_error');
   formError.textContent = errorMessage;
@@ -12,9 +12,9 @@ const showInputError = (formElement, formInput, errorMessage) => {
 };
 
 //Функция: скрывает ошибку
-const hideInputError = (formElement, formInput) => {
+const hideInputError = (formProfileElement, formInput) => {
   // Найдем элемент ошибки
-  const formError = formElement.querySelector(`.${formInput.id}-error`);
+  const formError = formProfileElement.querySelector(`.${formInput.id}-error`);
 
   formInput.classList.remove('popup__input_type_error');
   formError.classList.remove('popup__input-error_active');
@@ -22,13 +22,13 @@ const hideInputError = (formElement, formInput) => {
 };
 
 //Функция: проверяет валидность поля
-const isValid = (formElement, formInput) => {
+const isValid = (formProfileElement, formInput) => {
   if (!formInput.validity.valid) {
     // Если поле не проходит валидацию, показываем ошибку
-    showInputError(formElement, formInput, formInput.validationMessage);
+    showInputError(formProfileElement, formInput, formInput.validationMessage);
   } else {
     // Если проходит, скрываем ошибку
-    hideInputError(formElement, formInput);
+    hideInputError(formProfileElement, formInput);
   }
 };
 
@@ -42,18 +42,18 @@ const hasInvalidInput = (inputList) => {
 };
 
 //Функция: принимает форму и добавляет всем ее полям обработчики
-const setEventListeners = (formElement) => {
+const setEventListeners = (formProfileElement) => {
   //Находим все поля внутри формы и делаем из них массив
-  const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+  const inputList = Array.from(formProfileElement.querySelectorAll('.popup__input'));
   //Находим в текущей форме кнопку "Сохранить"
-  const buttonElement = formElement.querySelector('.popup__save');
+  const buttonElement = formProfileElement.querySelector('.popup__save');
 
   toggleButtonState(inputList, buttonElement);
 
   //Обойдем все элементы и каждому добавим обработчик события input, внутри колбэка вызовем isValid
   inputList.forEach((formInput) => {
     formInput.addEventListener('input', () => {
-      isValid(formElement, formInput)
+      isValid(formProfileElement, formInput)
 
       //Вызовем переключатель кнопки
       toggleButtonState(inputList, buttonElement);
@@ -76,12 +76,12 @@ const toggleButtonState = (inputList, buttonElement) => {
 const enableValidation = () => {
   const formList = Array.from(document.querySelectorAll('.popup__form'));
 
-  formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
+  formList.forEach((formProfileElement) => {
+    formProfileElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
 
-    setEventListeners(formElement);
+    setEventListeners(formProfileElement);
   });
 };
 

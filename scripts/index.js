@@ -1,18 +1,19 @@
 //ПОПАП РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 
-  const openEditProfilePopupButton = document.querySelector('.profile__edit-button');
+  const popup = document.querySelector('.popup');
+  const editProfilePopupOpenButton = document.querySelector('.profile__edit-button');
   const profileName = document.querySelector('.profile__name');
   const profileDescription = document.querySelector('.profile__description');
   const editProfilePopup = document.querySelector('.popup_edit-profile');
-  const closeEditProfilePopupButton = document.querySelector('.popup__close');
-  const formElement = document.querySelector('.popup__form');
+  const editProfilePopupCloseButton = document.querySelector('.popup__close');
+  const formProfileElement = popup.querySelector('.popup__form');
   const nameInput = document.querySelector('.popup__input_type_name');
   const jobInput = document.querySelector('.popup__input_type_description');
 
   //Функции открытия и закрытия для всех попапов
   function openPopup(element) {
       element.classList.add('popup_is-opened');
-      document.addEventListener("keydown", closePopupEsc);
+      document.addEventListener("keydown", closePopupEsc);   
   }
 
   function closePopup(element) {
@@ -29,7 +30,7 @@
     }
 
   //Функция: отправляет новые введенные данные в графы имени и описания и закрывает форму
-  function handleFormSubmit(evt) {
+  function submitProfileForm(evt) {
       evt.preventDefault(); 
       profileName.textContent = nameInput.value;
       profileDescription.textContent = jobInput.value;
@@ -38,34 +39,34 @@
   }
 
   //Открыть попап редактирования профиля, нажав на кнопку "Редактировать профиль"
-  openEditProfilePopupButton.addEventListener('click', openEditProfilePopup);
+  editProfilePopupOpenButton.addEventListener('click', openEditProfilePopup);
 
   //Закрыть окно "Редактировать профиль", нажав на крестик
-  closeEditProfilePopupButton.addEventListener('click', () => closePopup(editProfilePopup));
+  editProfilePopupCloseButton.addEventListener('click', () => closePopup(editProfilePopup));
 
   //Отправить новые данные в форму
-  formElement.addEventListener('submit', handleFormSubmit);
+  formProfileElement.addEventListener('submit', submitProfileForm);
 
 
 
 //ПОПАП ОТКРЫТИЯ КАРТОЧКИ
 
-const openImagePopup = document.querySelector('.popup_open-image');
+const openedImagePopup = document.querySelector('.popup_open-image');
 const openedImage = document.querySelector('.popup__image');
 const imageTitle = document.querySelector('.popup__image-title');
-const closeImagePopupButton = document.querySelector('.popup__close_open-image');
+const openedImagePopupCloseButton = document.querySelector('.popup__close_open-image');
 
   //Функция: открывает картинку при нажатии на неё
   function openImage(cardData) {
     imageTitle.textContent = cardData.name;
     openedImage.src = cardData.link;
-    openImage.alt = cardData.name;
+    openedImage.alt = cardData.name;
 
-    openPopup(openImagePopup)
+    openPopup(openedImagePopup)
   }
 
   //Закрыть картинку, нажав на крестик
-  closeImagePopupButton.addEventListener('click', () => closePopup(openImagePopup));  
+  openedImagePopupCloseButton.addEventListener('click', () => closePopup(openedImagePopup));  
 
 
 
@@ -94,7 +95,7 @@ const closeImagePopupButton = document.querySelector('.popup__close_open-image')
   function submitAddCardForm (evt) {
     evt.preventDefault();
     renderCard({ name: titleInput.value, link: linkInput.value });
-  
+
     addCardForm.reset();
   
     closePopup(addCardPopup);
@@ -150,20 +151,19 @@ const closeImagePopupButton = document.querySelector('.popup__close_open-image')
   //Функция: закрывает попапы при нажатии на оверлэй
   function closePopupOverlay(evt) {
     if (evt.target === evt.currentTarget) {
-      closePopup(editProfilePopup);
-      closePopup(openImagePopup);
-      closePopup(addCardPopup);
+      const openedPopupForOverlay = document.querySelector(".popup_is-opened");
+      closePopup(openedPopupForOverlay);
     }
   }
 
   editProfilePopup.addEventListener('mousedown', closePopupOverlay);
-  openImagePopup.addEventListener('mousedown', closePopupOverlay);
+  openedImagePopup.addEventListener('mousedown', closePopupOverlay);
   addCardPopup.addEventListener('mousedown', closePopupOverlay);
 
   //Функция: закрывает попапы при нажатии на Esc
   function closePopupEsc(evt) {
     if (evt.key === "Escape") {
-     const openPopupForEsc = document.querySelector(".popup_is-opened");
-     closePopup(openPopupForEsc);
+     const openedPopupForEsc = document.querySelector(".popup_is-opened");
+     closePopup(openedPopupForEsc);
     }
   } 
