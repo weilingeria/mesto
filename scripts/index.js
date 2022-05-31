@@ -7,6 +7,7 @@
   const editProfilePopup = document.querySelector('.popup_edit-profile');
   const editProfilePopupCloseButton = document.querySelector('.popup__close');
   const formProfileElement = popup.querySelector('.popup__form');
+  const formInput = formProfileElement.querySelector('.popup__input');
   const nameInput = document.querySelector('.popup__input_type_name');
   const jobInput = document.querySelector('.popup__input_type_description');
 
