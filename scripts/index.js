@@ -1,3 +1,7 @@
+import { initialCards, config } from "./constants.js";
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
+
 //ПОПАП РЕДАКТИРОВАНИЯ ПРОФИЛЯ
 
   const profilePopupOpenButton = document.querySelector('.profile__edit-button');
@@ -25,6 +29,8 @@
   function openprofilePopup() {
       nameInput.value = profileName.textContent;
       jobInput.value = profileDescription.textContent;
+      profilePopupValidation.resetErrors();
+      profilePopupValidation.submitButtonInactive();
       
       openPopup(profilePopup)
     }
@@ -34,7 +40,6 @@
       evt.preventDefault(); 
       profileName.textContent = nameInput.value;
       profileDescription.textContent = jobInput.value;
-
       closePopup(profilePopup)
   }
 
@@ -57,10 +62,10 @@ const imageTitle = document.querySelector('.popup__image-title');
 const openedImagePopupCloseButton = document.querySelector('.popup__close_open-image');
 
   //Функция: открывает картинку при нажатии на неё
-  function openImage(cardData) {
-    imageTitle.textContent = cardData.name;
-    openedImage.src = cardData.link;
-    openedImage.alt = cardData.name;
+  function openImage(name, link) {
+    imageTitle.textContent = name;
+    openedImage.src = link;
+    openedImage.alt = name;
 
     openPopup(openedImagePopup)
   }
@@ -81,25 +86,24 @@ const openedImagePopupCloseButton = document.querySelector('.popup__close_open-i
   const submitButton = document.getElementById('popup__save_add-form');
 
   //Открыть попап для добавления карточек
-  newCardButton.addEventListener('click', () => openPopup(newCardPopup));
+  newCardButton.addEventListener('click', () => {
+    openPopup(newCardPopup);
+    newCardValidation.resetErrors();
+    newCardValidation.submitButtonInactive();
+  });
 
   //Закрыть попап добавления карточек, нажав на крестик
   newCardFormCloseButton.addEventListener('click', () => closePopup(newCardPopup));
 
   //Шаблон добавления карточки
-  const elementTemplate = document.querySelector('#elements-template').content.querySelector('.element');
+  /*const elementTemplate = document.querySelector('#elements-template').content.querySelector('.element');*/
 
-  //DOM элементы
-  const elementsListContainer = document.querySelector('.elements__list');
-
-  //Функция: принимает данные и добавляет в массив
+   //Функция: принимает данные и добавляет в массив
   function submitAddCardForm (evt) {
     evt.preventDefault();
     renderCard({ name: titleInput.value, link: linkInput.value });
 
     newCardForm.reset();
-
-    submitButtonInactive(submitButton);
   
     closePopup(newCardPopup);
   };
@@ -107,16 +111,16 @@ const openedImagePopupCloseButton = document.querySelector('.popup__close_open-i
   newCardForm.addEventListener('submit', submitAddCardForm);
 
   //Обработчики событий
-  const cardLike = (evt) => {
+  /*const cardLike = (evt) => {
     evt.target.classList.toggle('element__like_active');
   };
 
   const cardDelete = (evt) => {
     evt.target.closest('.element').remove();
-  };
+  };*/
 
   //Генерация карточки
-  const generateCard = (cardData) => {
+  /*const generateCard = (cardData) => {
 
     const newCard = elementTemplate.cloneNode(true);
   
@@ -139,15 +143,23 @@ const openedImagePopupCloseButton = document.querySelector('.popup__close_open-i
       cardLink.addEventListener('click', () => openImage(cardData));
   
     return newCard;
+  };*/
+
+  //Отрисовка карточек
+ function createCard(cardData) {
+    const card = new Card(cardData, '#elements-template', openImage);
+    const cardCreated = card.generateCard();
+    return cardCreated;
   };
 
-  //Отрисовка карточек из массива
-  const renderCard = (cardData) => {
-    elementsListContainer.prepend(generateCard(cardData));
+  function renderCard(cardData, elementsListContainer) {
+    elementsListContainer = document.querySelector('.elements__list');
+
+    elementsListContainer.prepend(createCard(cardData));
   };
   
   initialCards.forEach((cardData) => {
-    renderCard(cardData);
+    renderCard(cardData)
   });
 
 
@@ -170,3 +182,9 @@ const openedImagePopupCloseButton = document.querySelector('.popup__close_open-i
      closePopup(openedPopupForEsc);
     }
   } 
+
+  const profilePopupValidation = new FormValidator(config, profilePopup);
+  profilePopupValidation.enableValidation();
+
+  const newCardValidation = new FormValidator(config, newCardPopup);
+  newCardValidation.enableValidation();

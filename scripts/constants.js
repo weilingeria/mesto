@@ -1,4 +1,4 @@
-const initialCards = [
+export const initialCards = [
     {
       name: '粉红房子🏠',
       link: 'https://images.unsplash.com/photo-1534179523731-b2922018150a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'
@@ -24,3 +24,12 @@ const initialCards = [
       link: 'https://images.unsplash.com/photo-1600103377176-1ee12e3458f5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=403&q=80'
     }
   ];
+
+export const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save',
+    inactiveButtonClass: 'popup__save_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__input-error_active'
+  }
