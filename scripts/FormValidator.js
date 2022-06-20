@@ -1,6 +1,5 @@
 export default class FormValidator {
   constructor(config, formProfileElement) {
-    this._formSelector = config.formSelector;
     this._inputSelector = config.inputSelector;
     this._submitButtonSelector = config.submitButtonSelector;
     this._inactiveButtonClass = config.inactiveButtonClass;
@@ -16,7 +15,7 @@ export default class FormValidator {
   _showInputError (formInput, errorMessage) {
     // Найдем элемент ошибки
     const formError = this._formProfileElement.querySelector(`.${formInput.id}-error`);
-
+    
     formInput.classList.add(this._inputErrorClass);
     formError.textContent = errorMessage;
     formError.classList.add(this._errorClass);
@@ -36,7 +35,8 @@ export default class FormValidator {
   _isValid (formInput) {
     if (!formInput.validity.valid) {
       // Если поле не проходит валидацию, показываем ошибку
-      this._showInputError(formInput);
+      const errorMessage = formInput.validationMessage;
+      this._showInputError(formInput, errorMessage);
     } else {
       // Если проходит, скрываем ошибку
       this._hideInputError(formInput);
