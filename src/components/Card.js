@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(cardData, templateSelector, openImage) {
+  constructor({cardData, openImage}, templateSelector) {
     this._name = cardData.name;
     this._link = cardData.link;
     this._openImage = openImage;
@@ -23,7 +23,7 @@ export default class Card {
   _cardDelete() {
     this._newCard.remove();
     this._newCard = null;
-  };
+  }
 
   _setEvent() {
     this._likeButton.addEventListener('click', () => {

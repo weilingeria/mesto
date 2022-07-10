@@ -33,3 +33,11 @@ export const config = {
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
   }
+
+export const profilePopup = document.querySelector('.popup_edit-profile');
+export const nameInput = document.querySelector('.popup__input_type_name');
+export const jobInput = document.querySelector('.popup__input_type_description');
+export const profilePopupOpenButton = document.querySelector('.profile__edit-button');
+export const newCardPopup = document.querySelector('.popup_add-cards');
+export const newCardForm = document.querySelector('.popup__form_add-cards');
+export const newCardButton = document.querySelector('.profile__add-button');

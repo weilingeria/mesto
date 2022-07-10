@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mesto</title>
-  <link rel="stylesheet" href="pages/index.css">
 </head>
 
 <body class="page">
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="Лого Место">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="Лого Место">
   </header>
 
   <main class="content">
@@ -123,8 +122,6 @@
       <button class="element__delete" type="button"></button>
     </li>
   </template>
-
-  <script src="./scripts/index.js" type="module"></script>
 
 </body>
 </html>

@@ -19,7 +19,7 @@ export default class FormValidator {
     formInput.classList.add(this._inputErrorClass);
     formError.textContent = errorMessage;
     formError.classList.add(this._errorClass);
-  };
+  }
 
     //Функция: скрывает ошибку
   _hideInputError (formInput) {
@@ -29,7 +29,7 @@ export default class FormValidator {
     formInput.classList.remove(this._inputErrorClass);
     formError.textContent = '';
     formError.classList.remove(this._errorClass);
-  };
+  }
 
     //Функция: проверяет валидность поля
   _isValid (formInput) {
@@ -41,7 +41,7 @@ export default class FormValidator {
       // Если проходит, скрываем ошибку
       this._hideInputError(formInput);
     }
-  };
+  }
 
   //Функция: проверяет, есть ли среди полей хотя бы одно невалидное для дальнейшей настройки статуса кнопки
   _hasInvalidInput() {
@@ -50,17 +50,17 @@ export default class FormValidator {
 
       return !formInput.validity.valid;
     })
-  };
+  }
 
   submitButtonInactive() {
     this._buttonElement.classList.add(this._inactiveButtonClass);
     this._buttonElement.disabled = true;
-  };
+  }
   
   _submitButtonActive() {
     this._buttonElement.classList.remove(this._inactiveButtonClass);
     this._buttonElement.disabled = false;
-  };
+  }
   
   //Функция: отключает кнопку, если есть хоть один невалидный инпут, включает ее, если всё в порядке
   _toggleButtonState() {
@@ -69,7 +69,7 @@ export default class FormValidator {
     } else {
       this._submitButtonActive();
     }
-  };
+  }
 
   //Функция: принимает форму и добавляет всем ее полям обработчики
   _setEventListeners() {
@@ -85,13 +85,13 @@ export default class FormValidator {
         this._toggleButtonState();
       });
     });
-  };
+  }
 
   resetErrors() {
     this._inputList.forEach((formInput) => {
       this._hideInputError(formInput);
     });
-  };
+  }
 
     //Функция: принимает форму и вызывает для нее setEventListeners
   enableValidation() {
@@ -100,5 +100,5 @@ export default class FormValidator {
     });
 
     this._setEventListeners();
-  };
-};
+  }
+}
