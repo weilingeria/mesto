@@ -19,18 +19,15 @@ import PopupWithImage from "../components/PopupWithImage.js";
   const popupEditProfile = new PopupWithForm({
     popupSelector: '.popup_edit-profile',
     submitFormHandler: (formData) => {
-      userInfo.setUserInfo({
-        name: formData.name,
-        description: formData.description
-      });
+      userInfo.setUserInfo(formData);
       popupEditProfile.closePopup();
     }
   });
 
   const popupAddCard = new PopupWithForm({
     popupSelector: '.popup_add-cards',
-    submitFormHandler: (cardData) => {
-      cardsList.addItem(createCard(cardData));
+    submitFormHandler: ({elementTitle, elementLink}) => {
+      cardsList.addItem(createCard({name: elementTitle, link: elementLink}));
       popupAddCard.closePopup();
     }
   });
@@ -49,12 +46,11 @@ import PopupWithImage from "../components/PopupWithImage.js";
   };
 
   const cardsList = new Section({
-    items: initialCards,
     renderer: (item) => {
       cardsList.addItem(createCard(item));
     }}, '.elements__list');
   
-  cardsList.renderedItems();
+  cardsList.renderedItems(initialCards);
 
   //Открыть попап редактирования профиля
   profilePopupOpenButton.addEventListener('click', () => {

@@ -95,10 +95,6 @@ export default class FormValidator {
 
     //Функция: принимает форму и вызывает для нее setEventListeners
   enableValidation() {
-    this._formProfileElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-
     this._setEventListeners();
   }
 }
